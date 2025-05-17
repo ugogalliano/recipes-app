@@ -7,7 +7,7 @@ const urlGetRecipe = "lookup.php?i=";
 export function useRecipe(recipeId: string): [Meal | null, string, boolean] {
   const [recipe, setRecipe] = useState<Meal | null>(null);
   const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchRecipe = useCallback(async () => {
     setLoading(true);

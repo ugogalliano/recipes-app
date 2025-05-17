@@ -47,7 +47,7 @@ export default function RecipeDetail({ recipe }: Readonly<RecipeDetailProps>) {
         <img
           src={recipe.strMealThumb}
           alt={recipe.strMeal}
-          width={400}
+          width={350}
           height={350}
           className="rounded-md shadow-lg hover:shadow-2xl object-cover"
         />
@@ -60,7 +60,7 @@ export default function RecipeDetail({ recipe }: Readonly<RecipeDetailProps>) {
           Area: <span className="font-semibold">{recipe.strArea}</span>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl min-h-[400px] ">
         <div className="bg-primary rounded-md p-3 shadow-lg">
           <h2 className="text-xl font-semibold mb-2">Instructions</h2>
           <p className="text-lg text-gray-700 whitespace-pre-line">

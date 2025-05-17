@@ -82,12 +82,22 @@ export default function RecipeCard({ recipe }: Readonly<RecipeCardProps>) {
           <div className="flex justify-between w-full items-center">
             <div className="flex gap-3 items-center">
               {recipe.strSource && (
-                <a href={recipe.strSource} target="_blank" rel="Source Link">
+                <a
+                  href={recipe.strSource}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Source link for the recipe"
+                >
                   <ExternalLink className="w-7 h-7 hover:text-primary" />
                 </a>
               )}
               {recipe.strYoutube && (
-                <a href={recipe.strYoutube} target="_blank" rel="Recipe Video">
+                <a
+                  href={recipe.strYoutube}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Recipe video"
+                >
                   <Video className="w-7 h-7 hover:text-primary" />
                 </a>
               )}
