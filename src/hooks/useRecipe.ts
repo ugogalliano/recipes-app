@@ -3,6 +3,7 @@ import { axiosInstance } from "../api/axios";
 import type { Meal } from "../models/Meal";
 
 const urlGetRecipe = "lookup.php?i=";
+const invalidId = "Invalid ID";
 
 export function useRecipe(recipeId: string): [Meal | null, string, boolean] {
   const [recipe, setRecipe] = useState<Meal | null>(null);
@@ -13,7 +14,11 @@ export function useRecipe(recipeId: string): [Meal | null, string, boolean] {
     setLoading(true);
     try {
       const res = await axiosInstance.get(`${urlGetRecipe}${recipeId}`);
-      setRecipe(res.data.meals?.[0] ?? null);
+      if (res.data.meals === invalidId) {
+        setRecipe(null);
+      } else {
+        setRecipe(res.data.meals?.[0] ?? null);
+      }
       setError("");
     } catch (err) {
       console.error("[Err]", err);

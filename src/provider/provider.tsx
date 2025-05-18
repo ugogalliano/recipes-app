@@ -8,8 +8,7 @@ import {
 } from "react";
 import type { ReactNode } from "react";
 import type { Meal } from "../models/Meal";
-
-const localStorageKey = import.meta.env.VITE_LOCALSTORAGE_KEY;
+import { localStorageKey } from "@/config/costants";
 
 type FavoritesContextType = {
   favorites: Meal[];

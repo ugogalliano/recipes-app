@@ -19,7 +19,7 @@ export default function Banner({
         "bg-primary p-6 rounded-2xl  md:max-w-[500px] mt-10 mx-3  md:mx-auto shadow-md flex items-center space-x-4",
         className
       )}
-      aria-label="Search instruction"
+      aria-label={message}
     >
       <Icon className="w-8 h-8 " focusable="false" aria-hidden="true" />
 

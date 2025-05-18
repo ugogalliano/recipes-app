@@ -16,8 +16,6 @@ export default function DetailRecipePage() {
     [loading, recipe, error]
   );
 
-  console.log(recipe);
-
   return (
     <>
       {recipe && <RecipeDetail recipe={recipe} />}
