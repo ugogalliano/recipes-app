@@ -73,5 +73,5 @@ npm run start
 Run Test:
 
 ```bash
-npm run test
+npm run jest:run
 ```
