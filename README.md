@@ -1,54 +1,77 @@
-# React + TypeScript + Vite
+# 🍽️ Recipe Finder App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application for searching, viewing, and saving your favorite recipes =D!
+Built using **Vite**, **React Router**, **Tailwind CSS**, and **Jest** for testing.
 
-Currently, two official plugins are available:
+## 📦 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Bundler:** [Vite](https://vitejs.dev/)
+- **Javascript Library** [React](https://reactjs.org/)
+- **Routing:** [React Router DOM](https://reactrouter.com/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **Testing:** [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/)
+- **State Management:** React Context API + LocalStorage
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📁 Pages Overview
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 🏠 Homepage
+
+- Recipe search input with debounce.
+- Search by **ingredient** or **keyword**.
+- Dynamic recipe listing.
+- Contextual banners for loading, no results, or error states.
+
+### 📄 Recipe Detail Page
+
+- Displays full details of a selected recipe.
+
+### ⭐ Favorites Page
+
+- Displays the list of favorited recipes.
+- Favorites are persisted using **localStorage**.
+- Recipes can be added or removed from favorites.
+
+---
+
+## ⚙️ State Management
+
+- **Favorites Context**: Implemented with the built-in React Context API.
+- **Persistence**: Synced with `localStorage` to keep favorites between sessions.
+
+---
+
+## 🌐 API Calls
+
+- Recipes are fetched from [TheMealDB API](https://www.themealdb.com/).
+- No third-party data-fetching libraries were used (like SWR or Tanstack Query).
+- All fetching logic is abstracted into **custom hooks** (e.g. `useSearchRecipes || useRecipe`) to avoid repetition and improve readability.
+
+---
+
+## 🧪 Testing
+
+- Framework: **Jest** + **React Testing Library**
+- Test coverage includes:
+  - Input typing and debounced search behavior.
+  - Conditional rendering of banners based on application state.
+  - Recipe list rendering.
+
+Build:
+
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run start
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Run Test:
+
+```bash
+npm run test
 ```
