@@ -26,17 +26,17 @@ type Range20 = IntRange<1, 21>;
 interface MealBase {
   idMeal: string;
   strMeal: string;
-  strMealAlternate?: string;
+  strMealAlternate?: string | null;
   strCategory: string;
   strArea: string;
   strInstructions: string;
   strMealThumb: string;
-  strTags?: string;
+  strTags?: string | null;
   strYoutube?: string;
   strSource?: string;
-  strImageSource?: string;
-  strCreativeCommonsConfirmed?: string;
-  dateModified?: Date;
+  strImageSource?: string | null;
+  strCreativeCommonsConfirmed?: string | null;
+  dateModified?: Date | null;
 }
 
 type IngredientKeys = `strIngredient${Range20}`;

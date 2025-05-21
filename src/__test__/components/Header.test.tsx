@@ -4,7 +4,7 @@ import Header from "../../shared/header/Header";
 import { MemoryRouter } from "react-router";
 
 describe("Header component", () => {
-  test("renders the title with link to home", () => {
+  it("renders the title with link to home", () => {
     render(
       <MemoryRouter>
         <Header />
@@ -16,7 +16,7 @@ describe("Header component", () => {
     expect(titleLink).toHaveAttribute("href", "/");
   });
 
-  test("renders the link to favorite recipes", () => {
+  it("renders the link to favorite recipes", () => {
     render(
       <MemoryRouter>
         <Header />
@@ -30,7 +30,7 @@ describe("Header component", () => {
     expect(favoritesLink).toHaveAttribute("href", "/favorites");
   });
 
-  test("renders the Heart icon in the favorites link", () => {
+  it("renders the Heart icon in the favorites link", () => {
     render(
       <MemoryRouter>
         <Header />

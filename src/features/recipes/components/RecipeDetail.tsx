@@ -43,13 +43,11 @@ export default function RecipeDetail({ recipe }: Readonly<RecipeDetailProps>) {
         {recipe.strMeal}
       </h1>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center w-full max-w-xs aspect-square">
         <img
           src={recipe.strMealThumb}
           alt={recipe.strMeal}
-          width={350}
-          height={350}
-          className="rounded-md shadow-lg hover:shadow-2xl object-cover"
+          className="w-full h-full rounded-md shadow-lg hover:shadow-2xl object-cover"
         />
       </div>
       <div className="flex gap-4 text-gray-600 text-sm md:text-lg font-medium">

@@ -69,6 +69,7 @@ describe("Homepage component", () => {
         </FavoritesContextProvider>
       </MemoryRouter>
     );
+
     expect(screen.getByText(/Apam balik/i)).toBeInTheDocument();
     const image = screen.getByRole("img", { name: /Apam balik/i });
     expect(image).toHaveAttribute(

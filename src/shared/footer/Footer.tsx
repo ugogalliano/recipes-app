@@ -1,5 +1,4 @@
-const linkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
-const githubUrl = import.meta.env.VITE_GITHUB_URL;
+import { githubUrl, linkedinUrl } from "@/config/costants";
 
 const Footer = () => {
   return (
