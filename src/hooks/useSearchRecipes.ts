@@ -1,8 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+} from "react";
 import { useDebounce } from "@uidotdev/usehooks";
 import { axiosInstance } from "../api/axios";
 import type { Meal } from "../models/Meal";
 import type { SearchType } from "../models/SearchType";
+import { isAbortedError } from "@/lib/utils";
 
 const urlSearchKeyword = "search.php?s=";
 const urlSearchIngredients = "filter.php?i=";
@@ -13,35 +20,43 @@ export function useSearchRecipes(
 ): [Meal[] | null, string, boolean] {
   const [recipes, setRecipes] = useState<Meal[] | null>([]);
   const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isPending, startTransition] = useTransition();
 
   const debouncedSearchTerm = useDebounce(query, 300);
   const searchUrl = useMemo(
     () => (searchType === "keyword" ? urlSearchKeyword : urlSearchIngredients),
     [searchType]
   );
-
-  const searchRecipes = useCallback(async () => {
+  const searchRecipes = useCallback(() => {
     if (!debouncedSearchTerm.trim()) {
       setRecipes([]);
       return;
     }
-    setLoading(true);
-    try {
-      const res = await axiosInstance.get(`${searchUrl}${debouncedSearchTerm}`);
-      setRecipes(res.data.meals ?? null);
-    } catch (err) {
-      console.error("[Err]" + err);
-      setError("Errore nel recupero dei dati.");
-      setRecipes([]);
-    } finally {
-      setLoading(false);
-    }
+    const controller = new AbortController();
+    startTransition(async () => {
+      try {
+        const res = await axiosInstance.get(
+          `${searchUrl}${debouncedSearchTerm}`,
+          { signal: controller.signal }
+        );
+        setRecipes(res.data.meals ?? null);
+        setError("");
+      } catch (err: unknown) {
+        if (isAbortedError(err)) {
+          return;
+        }
+        console.error("[Err]", err);
+        setError("Errore nel recupero dei dati.");
+        setRecipes([]);
+      }
+    });
+    return () => controller.abort();
   }, [debouncedSearchTerm, searchUrl]);
 
   useEffect(() => {
-    searchRecipes();
+    const abortController = searchRecipes();
+    return () => abortController && abortController();
   }, [searchRecipes]);
 
-  return [recipes, error, loading];
+  return [recipes, error, isPending];
 }
