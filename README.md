@@ -57,6 +57,13 @@ Built using **Vite**, **React Router**, **Tailwind CSS**, and **Jest** for testi
   - Input typing and debounced search behavior.
   - Conditional rendering of banners based on application state.
   - Recipe list rendering.
+  - Unit test for some components.
+
+Dev Mode:
+
+```bash
+npm run dev
+```
 
 Build:
 
@@ -67,11 +74,17 @@ npm run build
 Start:
 
 ```bash
-npm run start
+npm run preview
 ```
 
 Run Test:
 
 ```bash
 npm run jest:run
+```
+
+Run single Test:
+
+```bash
+npm run jest:run -- RecipeCard
 ```
